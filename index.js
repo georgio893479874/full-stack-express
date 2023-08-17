@@ -1,10 +1,11 @@
 import express from 'express';
-import jwt from 'jsonwebtoken';
+import bodyParser from 'body-parser';
 import mongoose from "mongoose";
 
 const app = express();
 
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 const port = process.env.PORT || 3000
 
