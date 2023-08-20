@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
+import jwt from 'jsonwebtoken';
 
 const app = express();
 
@@ -15,6 +16,10 @@ app.get('/', (req, res) => {
 
 app.post('/login', (req, res) => {
     console.log(req.body);
+    const token = jwt.sign({
+        email: req.body.email,
+        password: req.body.password,
+    });
     res.json({
       success: true,
     });
