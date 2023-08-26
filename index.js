@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
 
-let Conected = mongoose.connect("");
+mongoose.connect("");
 
 const app = express();
 
