@@ -24,6 +24,7 @@ app.post('/login', (req, res) => {
     }, '',);
     res.json({
       success: true,
+      token,
     });
 });
 
