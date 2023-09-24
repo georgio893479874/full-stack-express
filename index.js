@@ -13,7 +13,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const port = process.env.PORT || 3000
 
 app.get('/', (req, res) => {
-    res.send('Hello');
+    res.render('');
+});
+
+app.post('/register', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
@@ -32,6 +35,5 @@ app.listen(port, (err) => {
     if(err) {
         return console.log(err);
     }
-    console.log('not error');
 });
 
