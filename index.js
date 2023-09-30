@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
+import { validationResult } from 'express-validator';
 
 mongoose.connect("");
 
@@ -17,6 +18,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/register', (req, res) => {
+    const errors = validationResult(req);
 });
 
 app.post('/login', (req, res) => {
