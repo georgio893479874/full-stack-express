@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const port = process.env.PORT || 3000
 
 app.get('/', (req, res) => {
-    res.render('');
+    res.send({status: 200});
 });
 
 app.post('/register', (req, res) => {
