@@ -42,6 +42,11 @@ app.post('/new-product', async (req, res) => {
     let description = req.body.description.toString();
     let image = req.body.image.toString();
     let select = req.body.category.toString();
+    let rating = req.body.rating.toString();
+    let discountPercentage = req.body.discount.toString();
+    let stock = req.body.stock.toString();
+    let brand = req.body.brand.toString();
+    let thumbnail = req.body.thumbnail.toString();
     let products_ = await Products.find({});
 
     await Products.insertMany([             
@@ -51,11 +56,11 @@ app.post('/new-product', async (req, res) => {
             "description": description,
             "price": price,
             "category": select,
-            "discountPercentage": ,
-            "rating": ,
-            "stock": ,
-            "brand": "",
-            "thumbnail": "",
+            "discountPercentage": discountPercentage,
+            "rating": rating,
+            "stock": stock,
+            "brand": brand,
+            "thumbnail": thumbnail,
             "images": [
                 image,
             ]
