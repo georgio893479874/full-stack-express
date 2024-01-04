@@ -1,1 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.rtl.min.css" integrity="sha512-ltIFivbYEeV9dNzcYLxBKC2hPQ0l9K2/Ws8R5GsMkxANKtMigmsjzTUUej7iH5NwGNnD070lrycDq5OJlDyb1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+<body>
+    <section class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="main">
+                        <h1 class="title"><%=data.title %></h1>
+                        <p><%=data.id %></p>
+                        <p><%=data.description %></p>
+                        <h6><%=data.price %></h6>
+                        <img src="<%=data.images[0] %>" alt=""><br>
+                        <button class="btn1 btn"><(<%=data.id-1 %>)</button>
+                        <button class="btn2 btn">>(<%=data.id+1 %>)</button>
+                        <div class="link_yakir">
+                            <%  for (let i = 1; i < 10; i++) {    %>
+                            <a href="<%=i%>" class="pagination-link"><%=i%></a>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Roboto:wght@300&family=Rufina:wght@400;700&display=swap');
+
+        body {
+            background: lightgray;
+        }
+
+        p {
+            color: gray;
+            font-size: 12px;
+        }
+
+        .btn {
+            margin-top: 15px;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 12px;
+            font-family: Rufina;
+            width: 25px;
+            height: 25px;
+            display: inline-block;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            border-radius: 7px;
+            border: 1px solid #3e77aa;
+            background: #FFFFFF;
+        }
+    </style>
+    <script>
+        let btn1 = document.getElementsByClassName('btn1')[0];
+        let btn2 = document.getElementsByClassName('btn2')[0];
+        let indexS = location.href.lastIndexOf('/')
+        let number = +location.href.slice(indexS+1)
+        let paginationLink = document.getElementsByClassName('pagination-link')[number-1];
+        paginationLink.style.background = 'blue';
+        paginationLink.style.color = 'white';
+        btn1.addEventListener('click', function() {
+            let indexS = location.href.lastIndexOf('/')
+            let number = +location.href.slice(indexS+1)
+            location.href = location.href.slice(0, indexS) + '/' + (number-1)
+        })
+        btn2.addEventListener('click', function() {
+            let indexS = location.href.lastIndexOf('/')
+            let number = +location.href.slice(indexS+1)
+            location.href = location.href.slice(0, indexS) + '/' + (number+1)
+        })
+        if (number == 1) {
+            btn1.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
