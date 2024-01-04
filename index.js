@@ -6,36 +6,51 @@ import { validationResult } from 'express-validator';
 
 mongoose.connect("");
 
+let productsSchema = new Schema({
+        "id": Number,
+        "title": String,
+        "description": String,
+        "price": Number,
+        "category": String,
+        "discountPercentage": Number,
+        "rating": Number,
+        "stock": Number,
+        "brand": String,
+        "thumbnail": String,
+        "images": Array,
+})
+
 const app = express();
 
-app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.set('view engine', 'ejs')
+app.use(express.json());
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
     res.send("");
 });
 
-app.post('/register', (req, res) => {
-    const errors = validationResult(req);
-});
+app.get('/shop', async (req, res) => {
+    products = await Products.find({});
+    res.render('template-shop', {products});
+})
 
-app.post('/login', (req, res) => {
-    console.log(req.body);
-    const token = jwt.sign({
-        email: req.body.email,
-        password: req.body.password,
-    }, '',);
-    res.json({
-      success: true,
-      token,
-    });
-});
+app.get('/administrator', (req, res) => {
+    res.render('template-administrator');
+})
+
+app.get('/delete-product/:id',async (req, res) => {
+    let id = +req.params.id;
+    await Products.deleteOne({id: id})
+    res.send({sucess: true})
+})
 
 app.listen(port, (err) => {
     if(err) {
         return console.log(err);
     }
+    console.log("the site is running");
 });
 
