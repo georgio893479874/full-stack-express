@@ -1,1 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%  for (let i = 0; i < products.length; i++) {%>
+        <div class="card">
+            <img src="<%=products[i].images[0] %>" alt="">
+            <h1 class="title" class="title"><%=products[i].title %></h1>
+            <p><%=products[i].id %></p>
+            <p><%=products[i].description %></p>
+            <h6><%=products[i].price %></h6>
+            <h6><%=products[i].category %></h6>
+            <a href="/products/<%=i-1%>">show</a>
+            <button data-id="<%=products[i].id %>" class="x">Х</button>
+        </div>
+    <% } %>
 
+    <script>
+        let deletBtn = document.getElementsByClassName('x');
+        let text = document.getElementsByClassName('title');
+        for(let i = 0; i < text.length; i++) {
+            console.log(i)
+            if (text[i].textContent.length > 15) {
+                text[i].style.fontSize = '22px'
+            }
+        }
+
+        for (let i = 0; i < deletBtn.length; i++) {
+            deletBtn[i].addEventListener('click', () => {
+                let id = deletBtn[i].dataset.id
+                let answer = confirm(id)
+                if (answer == true) {
+                    fetch('/delete-product/' + id).then(data=>(data.json())).then(json=>{console.log(json)});
+                }
+            })
+        }
+    </script>
+
+    <style>
+        .card {
+            margin: 10px;
+            background: white;
+            width: 17%;
+            border-radius: 4px;
+            padding: 10px;
+            position: relative;
+        }
+
+        .x {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: red;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            transition: 0.2s;
+            border: none;
+            display: none;
+        }
+
+        .x:hover {
+            opacity: 0.8;
+        }
+
+        .card:hover .x{
+            display: flex;
+        }
+
+        body {
+            display: flex;
+            background: lightblue;
+            flex-wrap: wrap;
+        }
+
+        img {
+            max-width: 100%;
+        }
+    </style>
+</body>
+</html>
