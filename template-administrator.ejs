@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/new-product" method="post">
+        <input name="name" placeholder="name" type="text">
+        <input name="price" placeholder="price" type="text">
+        <input name="description" placeholder="description" type="text">
+        <input name="image" placeholder="image" type="url">
+        <select name="category" id="">
+            <option value="food">food</option>
+            <option value="technologe">technologe</option>
+            <option value="clothes">clothes</option>
+            <option value="other">other</option>
+        </select>
+        <button class="btn">Зберегти товар</button>
+    </form>
+
+    <style>
+        form {
+            margin-top: 75px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        body {
+            background: #00ffff;
+        }
+    </style>
+</body>
+</html>
