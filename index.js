@@ -28,13 +28,14 @@ app.use(express.json());
 
 const port = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-    res.send("");
-});
-
 app.get('/shop', async (req, res) => {
     products = await Products.find({});
     res.render('template-shop', {products});
+})
+
+app.get('/products/:number', (req, res) => {
+    let number = +req.params.number;
+    res.render('template-goods.ejs', {data: products[number+1]});
 })
 
 app.get('/administrator', (req, res) => {
